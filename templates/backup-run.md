@@ -1,0 +1,20 @@
+# Registro backup — ID:
+- Fecha UTC:
+- Operador:
+- VPS y servicios inventariados:
+- Rutas reales descubiertas (registrar solo en archivo seguro):
+- Versiones:
+- Volúmenes/bases y procedimiento de copia consistente:
+- Ventana de interrupción (si hubo):
+- Herramienta de cifrado:
+- Custodia de clave (sin anotarla aquí):
+- Destino autorizado:
+- Manifiesto y hashes SHA-256:
+- Tamaño de origen/copia:
+- Transferencia verificada:
+- Descifrado verificado:
+- Restauración aislada y evidencias:
+- Verificación Hermes/skills/Python/LibreOffice:
+- Limitaciones:
+- Resultado y autorizaciones:
+- Reversión:
