@@ -1,0 +1,15 @@
+# Tarea: <ID>
+- Fecha:
+- Proyecto y solicitante:
+- Objetivo:
+- Agente responsable:
+- Participantes:
+- Estado (pendiente/en curso/en revisión/bloqueado/completado):
+- Entradas, fuentes y autorización:
+- Salidas esperadas:
+- Criterios de aceptación:
+- Observaciones/hallazgos:
+- Herramientas y modelos:
+- Costo/tiempo (si se midieron):
+- Evidencia:
+- Revisión y aprobación humana:
