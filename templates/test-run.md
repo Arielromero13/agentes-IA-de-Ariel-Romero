@@ -1,0 +1,18 @@
+# Registro de prueba — ID:
+- Fecha/hora/zona:
+- Responsable:
+- VPS/SO/versión de Hermes:
+- Perfil(es) y modelos efectivos:
+- Datos de prueba (fuente y autorización):
+- Objetivo:
+- Criterios de aceptación:
+- Comandos/acciones ejecutadas (sin secretos):
+- Resultado:
+- Archivos y hashes:
+- Incidencias y correcciones:
+- RAM, CPU, tiempo:
+- Tokens y costo API:
+- Validación técnica:
+- Control visual:
+- Estado (no ejecutado / aprobado / rechazado / bloqueado):
+- Próximo paso:
