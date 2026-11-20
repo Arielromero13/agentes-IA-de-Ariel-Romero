@@ -1,0 +1,15 @@
+# Ficha de herramienta: <nombre>
+- Versión:
+- Ingeniero de Automatización responsable:
+- Caso de uso:
+- Interfaces/argumentos:
+- Formatos de entrada:
+- Salidas:
+- Dependencias:
+- Unidades y criterios técnicos:
+- Errores manejados:
+- Datos sintéticos de prueba:
+- Pruebas unitarias:
+- Validación por Revisor Técnico:
+- Cambios desde versión anterior:
+- Estado (propuesta/prueba/aprobada/deprecada):
