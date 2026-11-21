@@ -12,11 +12,12 @@
 - Configuración añadida al perfil principal y a coordinador, documentalista y presentaciones.
 - Skill `nlm-skill` instalada; instrucciones de trabajo actualizadas para investigar con fuentes y conservar citas.
 - Hermes reiniciado para cargar la configuración.
-- Ese reinicio dejó el relay privado de DeskRPG en una red anterior. Se recuperó el enlace y se instaló/probó un supervisor; ver [incidente y recuperación](deskrpg-relay-recovery.md). Los 12 empleados permanecieron guardados y activos.
-- Acceso web temporal cerrado: ruta pública retirada, interfaz web/VNC deshabilitada y ningún puerto del navegador publicado en el host.
+- Historial: ese reinicio dejó el relay privado de DeskRPG en una red anterior. Se recuperó el enlace y se probó un supervisor; posteriormente DeskRPG y el supervisor fueron retirados. Ver [historial del incidente](deskrpg-relay-recovery.md). Los perfiles de Hermes se conservaron.
+- Acceso web público cerrado: ruta pública retirada y ningún puerto del navegador publicado en el host. Web/VNC quedan solamente dentro del contenedor/red Docker privada.
 - El navegador persiste únicamente en la red privada del VPS para mantener la sesión de la cuenta dedicada.
+- Se detectó y corrigió un bucle de reinicios del navegador causado por la configuración de deshabilitar el listener web. Se recreó conservando el perfil, con listeners internos y sin puertos publicados ni ruta Traefik. Tras la corrección se observó contador de reinicios 0.
 
-La investigación completa desde DeskRPG, la delegación entre empleados y los entregables PPTX/audio siguen pendientes de una prueba real. Una llamada MCP exitosa no demuestra por sí sola que todo ese flujo funcione. Tampoco se han medido ahorros de tokens ni costos.
+DeskRPG fue descartado y retirado posteriormente por decisión de Ariel; el flujo vigente es Telegram y el dashboard oficial. Ariel informó haber recibido un entregable de NotebookLM por Telegram, sin aportar aquí el archivo o su formato. La delegación entre todos los empleados y la aceptación de PPTX/audio no se deducen de ese reporte. Una llamada MCP exitosa no demuestra por sí sola que todo ese flujo funcione. Tampoco se han medido ahorros de tokens ni costos.
 
 ## Configuración desplegada y recuperación
 
