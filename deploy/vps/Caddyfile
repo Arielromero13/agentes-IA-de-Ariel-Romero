@@ -1,4 +1,7 @@
 {$CADDY_DOMAIN} {
     encode zstd gzip
+
+    @socket path /socket.io/*
+    reverse_proxy @socket 127.0.0.1:3103
     reverse_proxy 127.0.0.1:3102
 }
