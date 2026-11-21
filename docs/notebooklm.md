@@ -1,6 +1,27 @@
-# NotebookLM como motor de investigación — propuesta de integración
+# NotebookLM — integración retirada por decisión de seguridad
 
-**Estado al 21-11-2026:** diseño recomendado; conexión de NotebookLM al VPS todavía pendiente. No guardar credenciales ni cookies en este repositorio.
+**Estado al 21-11-2026:** integración comunitaria por cookies retirada por decisión de Ariel. No reinstalar ni autenticar su cuenta principal de Google desde el VPS sin una nueva decisión explícita.
+
+## Decisión y evidencia
+
+Se instaló `notebooklm-mcp-cli==0.16.1`, se resolvió un error de propiedad de la carpeta persistente y se autenticó mediante un navegador temporal. Se verificó `notebook_list` por CLI y MCP; también se detectaron 55 herramientas. No se completó la prueba de investigación, diapositivas ni audio.
+
+La integración se descartó por el alcance de las credenciales: utiliza cookies de autenticación de la cuenta de Google, sin una concesión OAuth limitada exclusivamente a NotebookLM. Una filtración de la sesión puede tener consecuencias fuera de NotebookLM. Esto documenta una exposición técnica, no evidencia de que se haya producido un ataque.
+
+Acciones ejecutadas:
+- Retirada de la entrada MCP de la configuración principal y de los perfiles coordinador, documentalista y presentaciones.
+- Eliminación del entorno del conector, sus cookies y metadatos locales, y la skill instalada para esta integración.
+- Eliminación del contenedor de navegador temporal y su directorio de perfil persistente.
+- Retirada previa de la ruta pública y reinicio de Hermes.
+- Registro de la decisión en las instrucciones de los agentes.
+
+**Pendiente del titular:** cerrar en la cuenta de Google todas las sesiones correspondientes al navegador Linux/VPS utilizado. Eliminar archivos locales no revoca por sí mismo una sesión del lado de Google. Cualquier instantánea o copia de seguridad anterior al cierre puede conservar datos antiguos; la revocación en Google es necesaria.
+
+Por ahora, utilizar NotebookLM manualmente y entregar a la oficina únicamente los documentos, respuestas o artefactos que Ariel decida exportar. No guardar credenciales, cookies ni perfiles de navegador en este repositorio.
+
+## Diseño histórico, no habilitado
+
+Las secciones siguientes conservan la propuesta previa y los criterios de aceptación. No constituyen una instrucción para reinstalar el conector.
 
 ## Rol dentro de Ariel Agent OS
 
@@ -22,7 +43,7 @@ Así evitamos enviar documentos enteros a OpenRouter en cada turno. La reducció
 
 La API/MCP oficial de Gemini Notebook está en Public Preview. Actualmente sirve para crear y administrar notebooks y fuentes; el MCP documentado no expone preguntas al notebook ni generación de Studio. Google indica que durante la vista previa solo admite cuentas Google personales; Google Workspace no está soportado. Ver la [documentación oficial del MCP/API](https://developers.google.com/notebook/docs/mcp).
 
-Para Q&A de notebooks y generación de diapositivas/audio, el candidato con mejor ajuste es el proyecto comunitario [jacob-bd/gemini-notebook-mcp-cli](https://github.com/jacob-bd/gemini-notebook-mcp-cli), fijado inicialmente en la versión 0.16.5. Su documentación declara integración de Hermes y ofrece herramientas de consulta, fuentes, investigación web/Drive y creación/descarga de artefactos Studio.
+Para Q&A de notebooks y generación de diapositivas/audio, el candidato con mejor ajuste es el proyecto comunitario [jacob-bd/gemini-notebook-mcp-cli](https://github.com/jacob-bd/gemini-notebook-mcp-cli), fijado inicialmente en la versión 0.16.1. Su documentación declara integración de Hermes y ofrece herramientas de consulta, fuentes, investigación web/Drive y creación/descarga de artefactos Studio.
 
 El cliente comunitario no es un producto de Google: utiliza interfaces internas no documentadas y cookies de sesión del navegador. Puede romperse sin aviso y su mantenedor advierte que podría no estar alineado con los términos de Google. Antes de usarlo con trabajo real, hacer una prueba personal con documentos no sensibles. Reautenticación de la cuenta puede ser necesaria cada varias semanas.
 
@@ -34,7 +55,7 @@ mcp_servers:
     command: uvx
     args:
       - --from
-      - notebooklm-mcp-cli==0.16.5
+      - notebooklm-mcp-cli==0.16.1
       - notebooklm-mcp
     env:
       HOME: /opt/data/notebooklm
@@ -63,7 +84,7 @@ Los Audio Overviews son un producto distinto del modelo de voz de Hermes. Convie
 - Comparar ambos consumos con una prueba representativa y los datos disponibles en OpenRouter/NotebookLM; no anunciar ahorros cuantificados sin medición.
 - Las respuestas de NotebookLM también pueden equivocarse o citar de forma incompleta. Las referencias reducen el trabajo de rastreo, pero no sustituyen la revisión técnica.
 
-## Aceptación pendiente
+## Criterios históricos de aceptación — suspendidos
 
 1. Instalar el MCP en un perfil de Hermes de prueba, con versión fijada y HOME persistente.
 2. Completar autenticación sin guardar cookies en el repositorio.
