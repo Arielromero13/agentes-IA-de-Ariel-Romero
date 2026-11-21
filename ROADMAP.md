@@ -16,7 +16,7 @@
 - [ ] Probar Analista de Protecciones con COMTRADE autorizado/sintético.
 - [ ] Añadir Auditor de Calidad.
 - [ ] Crear Ingeniero de Automatización: herramientas Python reproducibles.
-- [ ] Medir costo y correcciones por informe.
+- [ ] Medir costo y correcciones por informe.\n- [ ] Integrar NotebookLM MCP en perfil de prueba de investigación; aceptar solo después de Q&A con citas, importación Drive, descarga PPTX/audio y medición de cuotas/API.
 
 ## P2: DeskRPG (en el VPS)
 - [x] Publicar instalador y Compose reproducibles para un VPS nuevo; estado de ejecución: pendiente de prueba en VPS limpio.
