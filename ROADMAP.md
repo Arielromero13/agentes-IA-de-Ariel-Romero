@@ -18,7 +18,8 @@
 - [ ] Crear Ingeniero de Automatización: herramientas Python reproducibles.
 - [ ] Medir costo y correcciones por informe.
 
-## P2: DeskRPG (en el VPS)\n- [x] Publicar instalador y Compose reproducibles para un VPS nuevo; estado de ejecución: pendiente de prueba en VPS limpio.
+## P2: DeskRPG (en el VPS)
+- [x] Publicar instalador y Compose reproducibles para un VPS nuevo; estado de ejecución: pendiente de prueba en VPS limpio.
 - [ ] Verificar compatibilidad del repositorio real con versión Hermes.
 - [ ] Piloto aislado; seguridad web; Kanban; perfiles; acceso desde navegador autorizado.
 - [ ] Comprobar que Hermes por Telegram sigue operativo.
@@ -30,7 +31,8 @@
 - [ ] Investigación, contraste de fuentes, recursos complejos y diagramas exactos.
 - [ ] Motor PPTX editable, PDF de inspección, notas y referencias.
 - [ ] Ensayo con material de curso de diseño de subestaciones.
-- [x] Configurar proveedor OpenRouter y modelo visual inicial google/gemini-nano-banana-2.1 en el instalador (pendiente de prueba en VPS nuevo).\n- [ ] Evaluar costo real, calidad y proveedor alternativo de generación de imágenes.
+- [x] Configurar proveedor OpenRouter y modelo visual inicial google/gemini-nano-banana-2.1 en el instalador (pendiente de prueba en VPS nuevo).
+- [ ] Evaluar costo real, calidad y proveedor alternativo de generación de imágenes.
 
 ## P4: migración
 - [ ] Escoger Mini PC (16 GB RAM ampliable a 32; SSD 1 TB preferido).
