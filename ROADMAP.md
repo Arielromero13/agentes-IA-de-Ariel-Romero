@@ -30,7 +30,7 @@
 - [ ] Investigación, contraste de fuentes, recursos complejos y diagramas exactos.
 - [ ] Motor PPTX editable, PDF de inspección, notas y referencias.
 - [ ] Ensayo con material de curso de diseño de subestaciones.
-- [ ] Evaluar costo y proveedor de generación de imágenes.
+- [x] Configurar proveedor OpenRouter y modelo visual inicial google/gemini-nano-banana-2.1 en el instalador (pendiente de prueba en VPS nuevo).\n- [ ] Evaluar costo real, calidad y proveedor alternativo de generación de imágenes.
 
 ## P4: migración
 - [ ] Escoger Mini PC (16 GB RAM ampliable a 32; SSD 1 TB preferido).
