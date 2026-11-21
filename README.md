@@ -2,12 +2,12 @@
 
 **Repositorio:** agentes-IA-de-Ariel-Romero  
 **Propósito:** oficina virtual de ingeniería con agentes especializados y herramientas reproducibles.  
-**Corte del estado documentado:** 20 de noviembre de 2026.  
-**Estado:** piloto operativo reportado sobre VPS Hostinger; extensión funcional y migración en planificación.
+**Corte del estado documentado:** 21 de noviembre de 2026.  
+**Estado:** piloto operativo reportado sobre VPS Hostinger; instalador para un VPS nuevo documentado y aún no probado.
 
 > **AVISO:** este repositorio se encuentra PÚBLICO al momento de la carga inicial. No guardar secretos, credenciales, backups, expedientes de empresa ni información interna sin autorización. Cambiarlo a privado antes de llevar configuraciones reales.
 
-## Operación actual (reportada; validar en servidor)
+## Instalación en un VPS nuevo\n\nEl repositorio incluye un instalador de una línea para Debian/Ubuntu. Configura DeskRPG + Hermes + el plugin compatible + HTTPS y prepara generación de imágenes vía OpenRouter. Requiere dominio y clave OpenRouter, y todavía no se ha probado en un VPS limpio. No restaura datos ni perfiles del VPS actual.\n\n~~~bash\ncurl -fsSL https://raw.githubusercontent.com/Arielromero13/agentes-IA-de-Ariel-Romero/main/scripts/install-vps.sh | sudo bash\n~~~\n\nGuía: [instalación de nuevo VPS](docs/instalacion-nuevo-vps.md).\n\n## Operación actual (reportada; validar en servidor)
 
 - Hermes Agent alojado en VPS Hostinger.
 - Telegram como canal operativo.
@@ -22,7 +22,7 @@
 ```mermaid
 flowchart TD
  U[Usuario] --> T[Telegram]
- U --> D[DeskRPG web: interfaz propuesta]
+ U --> D[DeskRPG web: stack reproducible, aún sin probar]
  T --> H[Hermes Agent]
  D --> H
  H --> P[Perfiles funcionales y herramientas]
@@ -33,7 +33,7 @@ flowchart TD
  I --> D
 ```
 
-**Fase inmediata:** probar los perfiles y DeskRPG en el VPS *existente*, no esperar a adquirir la Mini PC. La migración vendrá después de respaldo y restauración verificados.
+**VPS actual:** el piloto DeskRPG sigue con la incidencia descrita en [su evaluación](docs/deskrpg.md). El instalador del repositorio prepara un VPS nuevo; no altera ni reemplaza el piloto. La migración requiere backup y restauración verificados.
 
 ## Documentación de trabajo
 
