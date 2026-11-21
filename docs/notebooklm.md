@@ -12,6 +12,7 @@
 - Configuración añadida al perfil principal y a coordinador, documentalista y presentaciones.
 - Skill `nlm-skill` instalada; instrucciones de trabajo actualizadas para investigar con fuentes y conservar citas.
 - Hermes reiniciado para cargar la configuración.
+- Ese reinicio dejó el relay privado de DeskRPG en una red anterior. Se recuperó el enlace y se instaló/probó un supervisor; ver [incidente y recuperación](deskrpg-relay-recovery.md). Los 12 empleados permanecieron guardados y activos.
 - Acceso web temporal cerrado: ruta pública retirada, interfaz web/VNC deshabilitada y ningún puerto del navegador publicado en el host.
 - El navegador persiste únicamente en la red privada del VPS para mantener la sesión de la cuenta dedicada.
 
