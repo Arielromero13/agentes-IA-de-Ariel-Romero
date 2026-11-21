@@ -1,3 +1,11 @@
+# DeskRPG — retirado y descartado
+
+**Decisión vigente del 21-11-2026:** Ariel descartó DeskRPG por la fricción de integración y pidió liberar sus recursos. Se retiró del VPS después de archivar sus datos y configuraciones. No reinstalarlo ni continuar el trabajo de UI/progreso de esta aplicación. Se conservan los perfiles de Hermes, Telegram y NotebookLM.
+
+La interfaz vigente es el [dashboard oficial de Hermes, con guía de Android](hermes-android.md). El instalador antiguo y sus servicios Compose fueron retirados para impedir que DeskRPG vuelva a desplegarse por defecto. El historial que sigue describe el piloto y decisiones ya superadas; no es una instrucción de instalación vigente.
+
+---
+
 # DeskRPG — Evaluación e instalación piloto sobre VPS
 
 **Estado:** piloto instalado; integración con Hermes pendiente de resolver y validar.  
