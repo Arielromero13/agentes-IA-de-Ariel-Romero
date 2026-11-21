@@ -88,3 +88,11 @@ Referencias: https://github.com/dandacompany/deskrpg#hermes-connection y https:/
 ### Prueba adicional del 21 de noviembre
 
 El usuario registró el gateway y DeskRPG mostró conexión validada. Aun así, importar perfiles informa plugin_not_loaded y /deskrpg/info devuelve 404. En un proceso aislado con el perfil principal, el gestor detectó el manejador del plugin y el complemento pudo agregar 116 rutas a una aplicación de prueba, incluida /deskrpg/info; esto no prueba el servicio real. Se vinculó también el directorio de metadatos de PyYAML 6.0.3 al entorno Python del contenedor para que la dependencia se detecte; tras reiniciar, el endpoint real continuó devolviendo 404. El ajuste dentro del contenedor no es reproducible al recrearlo. Telegram informó reconexión, sin prueba posterior de respuesta del bot. Siguiente diagnóstico: determinar por qué el manejador del gestor del perfil principal no se invoca durante el arranque del adaptador API, sin alterar el sistema productivo hasta contar con reproducción y reversión.
+
+
+
+## Instalador para VPS nuevo — 21 de noviembre de 2026
+
+El repositorio ahora contiene un instalador interactivo de una línea y un Compose basado en la opción oficial Docker + Hermes de DeskRPG. Incluye DeskRPG, Hermes, instalación del commit del plugin fijado por la imagen de DeskRPG, proxy HTTPS Caddy y configuración de Hermes image_gen por OpenRouter. Las versiones iniciales están fijadas en el archivo local de entorno.
+
+Estado: **implementado en GitHub; no desplegado ni aceptado en un VPS limpio**. La guía [instalación de nuevo VPS](instalacion-nuevo-vps.md) describe requisitos, aceptación, operación y límites. No migra el VPS actual, sus perfiles, Telegram ni su memoria. Mantener la incidencia de plugin del piloto actual como un problema distinto hasta verificar cada entorno.
