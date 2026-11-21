@@ -28,7 +28,7 @@ El instalador no reemplaza una carpeta existente en /opt/ariel-agent-os. No usar
 - Hermes Agent v0.23.3; API solo en la red privada de Docker. Dashboard, si se activa, ligado a loopback.
 - Plugin DeskRPG del commit que DeskRPG fija para esa versión; se instala y habilita antes de iniciar el gateway.
 - Caddy como proxy HTTPS. Solo la oficina se publica en 80/443.
-- Hermes image_gen configurado con proveedor OpenRouter y modelo inicial google/gemini-3.1-flash-image. Su disponibilidad y precio pueden cambiar.
+- Hermes image_gen configurado con proveedor OpenRouter y modelo inicial google/gemini-nano-banana-2.1. Su disponibilidad y precio pueden cambiar.
 - Secretos en deploy/vps/.env, con permisos 600. El archivo y volúmenes de datos están excluidos de Git.
 
 La primera cuenta de DeskRPG se convierte en administradora. En My Gateways registra Hermes en http://hermes:8642 usando HERMES_API_KEY del archivo local .env. Después agrega los perfiles Hermes y asocia el gateway al canal. Estos pasos requieren usar la interfaz; el despliegue del servidor se ejecuta con una línea.
@@ -85,4 +85,4 @@ Para restaurar, detén servicios sin borrar volúmenes, restaura desde un respal
 - [DeskRPG: conexión y plugin Hermes](https://github.com/dandacompany/deskrpg#hermes-connection)
 - [Hermes: despliegue Docker](https://hermes-agent.nousresearch.com/deployment/docker/)
 - [Hermes: generación de imágenes](https://hermes-agent.nousresearch.com/features/image-generation/)
-- [OpenRouter: catálogo de modelos de imagen](https://openrouter.ai/models?output_modalities=image)
+- [OpenRouter: catálogo de modelos de imagen](https://openrouter.ai/google/gemini-nano-banana-2.1)
