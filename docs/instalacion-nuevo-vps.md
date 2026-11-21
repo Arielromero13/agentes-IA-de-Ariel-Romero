@@ -71,7 +71,7 @@ Antes de actualizar, respalda DeskRPG y Hermes; no uses docker compose down -v. 
 
 Para restaurar, detén servicios sin borrar volúmenes, restaura desde un respaldo ensayado y valida antes de reabrir tráfico. Consulta la guía de [respaldo del VPS](backup-vps.md).
 
-## Límites
+## NotebookLM (integración opcional)\n\nNotebookLM no forma parte todavía de la instalación de una línea. La investigación de integración encontró que el MCP oficial está en Public Preview y no ofrece actualmente Q&A/Studio; el conector comunitario con esas capacidades requiere autenticación de Google y conserva cookies de sesión fuera del repositorio. No se ha desplegado ni aceptado. Sigue el procedimiento, límites y criterios de seguridad en [docs/notebooklm.md](notebooklm.md).\n\n## Límites
 
 - No migra datos, perfiles, memoria, credenciales ni historial del VPS actual. Eso requiere respaldo cifrado y una restauración probada.
 - No expone Hermes API, dashboard ni base de datos a Internet.
