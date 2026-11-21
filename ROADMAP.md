@@ -1,6 +1,6 @@
 # Hoja de ruta — Ariel Agent OS
 
-**Base:** viernes 20 de noviembre de 2026.  
+**Base:** sábado 21 de noviembre de 2026.  
 **Fecha objetivo inicial para migración:** antes del 10-12-2026, condicionada a pruebas y compra de equipo.
 
 ## P0: preservar lo existente
@@ -18,7 +18,7 @@
 - [ ] Crear Ingeniero de Automatización: herramientas Python reproducibles.
 - [ ] Medir costo y correcciones por informe.
 
-## P2: DeskRPG (en el VPS)
+## P2: DeskRPG (en el VPS)\n- [x] Publicar instalador y Compose reproducibles para un VPS nuevo; estado de ejecución: pendiente de prueba en VPS limpio.
 - [ ] Verificar compatibilidad del repositorio real con versión Hermes.
 - [ ] Piloto aislado; seguridad web; Kanban; perfiles; acceso desde navegador autorizado.
 - [ ] Comprobar que Hermes por Telegram sigue operativo.
