@@ -66,7 +66,7 @@ services:
         fi
         $$p enable deskrpg
         hermes config set image_gen.provider openrouter
-        hermes config set image_gen.model google/gemini-3.1-flash-image
+        hermes config set image_gen.model google/gemini-nano-banana-2.1
 
   hermes:
     image: ${HERMES_IMAGE:-nousresearch/hermes-agent:v0.23.3}
