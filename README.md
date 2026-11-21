@@ -7,7 +7,17 @@
 
 > **AVISO:** este repositorio se encuentra PÚBLICO al momento de la carga inicial. No guardar secretos, credenciales, backups, expedientes de empresa ni información interna sin autorización. Cambiarlo a privado antes de llevar configuraciones reales.
 
-## Instalación en un VPS nuevo\n\nEl repositorio incluye un instalador de una línea para Debian/Ubuntu. Configura DeskRPG + Hermes + el plugin compatible + HTTPS y prepara generación de imágenes vía OpenRouter. Requiere dominio y clave OpenRouter, y todavía no se ha probado en un VPS limpio. No restaura datos ni perfiles del VPS actual.\n\n~~~bash\ncurl -fsSL https://raw.githubusercontent.com/Arielromero13/agentes-IA-de-Ariel-Romero/main/scripts/install-vps.sh | sudo bash\n~~~\n\nGuía: [instalación de nuevo VPS](docs/instalacion-nuevo-vps.md).\n\n## Operación actual (reportada; validar en servidor)
+## Instalación en un VPS nuevo
+
+El repositorio incluye un instalador de una línea para Debian/Ubuntu. Configura DeskRPG + Hermes + el plugin compatible + HTTPS y prepara generación de imágenes vía OpenRouter. Requiere dominio y clave OpenRouter, y todavía no se ha probado en un VPS limpio. No restaura datos ni perfiles del VPS actual.
+
+~~~bash
+curl -fsSL https://raw.githubusercontent.com/Arielromero13/agentes-IA-de-Ariel-Romero/main/scripts/install-vps.sh | sudo bash
+~~~
+
+Guía: [instalación de nuevo VPS](docs/instalacion-nuevo-vps.md).
+
+## Operación actual (reportada; validar en servidor)
 
 - Hermes Agent alojado en VPS Hostinger.
 - Telegram como canal operativo.
