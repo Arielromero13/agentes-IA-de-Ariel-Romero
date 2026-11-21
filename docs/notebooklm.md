@@ -1,8 +1,49 @@
-# NotebookLM — integración retirada por decisión de seguridad
+# NotebookLM — operación con cuenta dedicada
 
-**Estado al 21-11-2026:** integración comunitaria por cookies retirada por decisión de Ariel. No reinstalar ni autenticar su cuenta principal de Google desde el VPS sin una nueva decisión explícita.
+**Estado al 21-11-2026:** integración comunitaria operativa con una cuenta exclusiva de la oficina, por autorización expresa de Ariel. La cuenta principal de Google permanece excluida.
 
-## Decisión y evidencia
+## Estado vigente verificado
+
+- Paquete fijado: `notebooklm-mcp-cli==0.16.1`.
+- MCP stdio `gemini-notebook-mcp`: 55 herramientas detectadas.
+- Cuenta dedicada: identidad comprobada antes de habilitar los perfiles. No publicar aquí su correo ni credenciales.
+- Pro confirmado tanto en la interfaz de NotebookLM como en la respuesta autenticada de `usage_get` (`NOTEBOOKLM_TIER_PRO_CONSUMER_USER`).
+- `notebook_list` y `usage_get` ejecutados por MCP sin error tras autenticar la cuenta dedicada.
+- Configuración añadida al perfil principal y a coordinador, documentalista y presentaciones.
+- Skill `nlm-skill` instalada; instrucciones de trabajo actualizadas para investigar con fuentes y conservar citas.
+- Hermes reiniciado para cargar la configuración.
+- Acceso web temporal cerrado: ruta pública retirada, interfaz web/VNC deshabilitada y ningún puerto del navegador publicado en el host.
+- El navegador persiste únicamente en la red privada del VPS para mantener la sesión de la cuenta dedicada.
+
+La investigación completa desde DeskRPG, la delegación entre empleados y los entregables PPTX/audio siguen pendientes de una prueba real. Una llamada MCP exitosa no demuestra por sí sola que todo ese flujo funcione. Tampoco se han medido ahorros de tokens ni costos.
+
+## Configuración desplegada y recuperación
+
+Dentro del contenedor de Hermes:
+
+~~~yaml
+mcp_servers:
+  gemini-notebook-mcp:
+    command: /opt/data/notebooklm-cli/bin/notebooklm-mcp
+    connect_timeout: 60
+    env:
+      HOME: /opt/data/notebooklm
+      NOTEBOOKLM_HL: es
+    enabled: true
+~~~
+
+El entorno Python está en `/opt/data/notebooklm-cli`; la sesión está bajo `/opt/data/notebooklm`. La carpeta pertenece al UID/GID de servicio de Hermes (10000:10000 en este VPS), con modo 700 y archivos de sesión 600. Crear esa carpeta como root sin cambiar su propietario provoca `PermissionError` y el síntoma MCP `Connection closed`.
+
+El navegador usa `jlesage/chromium:v26.09.2`, con perfil persistente independiente en el host. Su CDP es accesible solamente desde la red Docker privada; nunca debe publicarse en Internet. En el despliegue actual el proveedor externo apunta a `http://172.16.0.3:9222`. Esa dirección es propia de esta red: verificar/rediseñar la asignación al migrar.
+
+Para reautenticar, abrir temporalmente una interfaz protegida por HTTPS y contraseña, iniciar sesión **solo con la cuenta dedicada**, ejecutar `nlm login --provider openclaw --cdp-url <CDP_PRIVADO> --storage file` con el mismo HOME persistente y el usuario de servicio, comprobar identidad/Pro y volver a cerrar inmediatamente la interfaz web. La primera autenticación requiere intervención humana.
+
+En otro VPS hay que reconstruir el entorno Python en su ruta final e instalar la versión fijada; no asumir que copiar un venv entre sistemas sea portable. Restaurar las configuraciones de los perfiles y la skill, y completar la autenticación dedicada. Esta documentación no convierte por sí sola ese paso OAuth/cookies en una instalación automática sin intervención.
+
+Las cookies y el perfil del navegador siguen siendo credenciales sensibles, aunque la cuenta esté dedicada. Verificar que la cuenta no tenga tarjetas ni acceso a un método de pago familiar; eso no se comprobó mediante las llamadas técnicas de NotebookLM. Pro compartido no equivale a aislamiento financiero automático.
+
+## Historial: retirada de la cuenta principal
+
 
 Se instaló `notebooklm-mcp-cli==0.16.1`, se resolvió un error de propiedad de la carpeta persistente y se autenticó mediante un navegador temporal. Se verificó `notebook_list` por CLI y MCP; también se detectaron 55 herramientas. No se completó la prueba de investigación, diapositivas ni audio.
 
@@ -15,13 +56,13 @@ Acciones ejecutadas:
 - Retirada previa de la ruta pública y reinicio de Hermes.
 - Registro de la decisión en las instrucciones de los agentes.
 
-**Pendiente del titular:** cerrar en la cuenta de Google todas las sesiones correspondientes al navegador Linux/VPS utilizado. Eliminar archivos locales no revoca por sí mismo una sesión del lado de Google. Cualquier instantánea o copia de seguridad anterior al cierre puede conservar datos antiguos; la revocación en Google es necesaria.
+**Revocación de la sesión anterior:** Ariel confirmó haber retirado en Google el acceso del navegador Linux reciente. Las copias locales de aquella sesión y el perfil de navegador fueron eliminados antes de crear el nuevo perfil dedicado.
 
-Por ahora, utilizar NotebookLM manualmente y entregar a la oficina únicamente los documentos, respuestas o artefactos que Ariel decida exportar. No guardar credenciales, cookies ni perfiles de navegador en este repositorio.
+Tras la retirada inicial se propuso uso manual. Ariel aclaró que la autonomía era el objetivo y autorizó posteriormente la conexión completa con una cuenta dedicada; el estado vigente figura arriba. No guardar credenciales, cookies ni perfiles de navegador en este repositorio.
 
-## Diseño histórico, no habilitado
+## Diseño de referencia inicial
 
-Las secciones siguientes conservan la propuesta previa y los criterios de aceptación. No constituyen una instrucción para reinstalar el conector.
+Las secciones siguientes conservan la propuesta previa y los criterios de aceptación. La autorización y configuración actuales son las de la sección Estado vigente verificado.
 
 ## Rol dentro de Ariel Agent OS
 
