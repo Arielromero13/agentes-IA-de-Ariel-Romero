@@ -13,7 +13,7 @@
 | AG-07 | Auditor de Calidad | Requisitos, visualización y trazabilidad | Solo lectura, no aprobación humana sustitutiva |
 | AG-08 | Ingeniero de Automatización | Crear, probar y mantener herramientas Python | Trabaja en sandbox Git, no cambia producción directamente |
 | AG-09 | Productor de Presentaciones | Contenido editorial, investigación, storyboard y coordinación PPTX | Respeta núcleo del documento y verificabilidad |
-| AG-10 | Diseñador Visual | Generar/recuperar imágenes, esquemas exactos y recursos | No inventar evidencia real ni dibujar circuitos exactos por imaginación |
+| AG-10 | Diseñador Visual | Dirección visual, generación/edición de imágenes, búsqueda de recursos y coordinación con AG-09 | No inventar evidencia real ni dibujar circuitos exactos por imaginación; separar ilustración conceptual de diagramas eléctricos verificables |
 
 ## Especialización y orquestación
 
@@ -25,7 +25,7 @@
 El «Investigador» es por ahora una *capacidad transversal* que pueden usar AG-01/02/03/09, no un perfil 11 sin justificación.
 
 ## Regla de modelos
-OpenRouter permite evaluar modelos según herramientas, razonamiento, contexto, calidad y precio; asignación definitiva por perfil después de pruebas reales. No confundir descripción del perfil con cambio efectivo de modelo ni mecanismo de aislamiento.
+OpenRouter permite evaluar modelos según herramientas, razonamiento, contexto, calidad y precio; asignación definitiva por perfil después de pruebas reales. No confundir descripción del perfil con cambio efectivo de modelo ni mecanismo de aislamiento.\n\n**Asignación inicial para el equipo visual:** AG-09 (Productor de Presentaciones) y AG-10 (Diseñador Visual) usan un modelo de texto de la familia Claude Sonnet para ideación, dirección, prompts, investigación y revisión. AG-10 además usa la herramienta Hermes image_gen configurada con OpenRouter y el modelo de imagen google/gemini-nano-banana-2.1. Son dos componentes distintos: el modelo de texto decide y redacta; el modelo de imagen genera o edita los recursos. La instalación prepara image_gen en Hermes, pero el modelo de texto y el acceso a herramientas se revisan por empleado en DeskRPG/Hermes. La selección queda como propuesta hasta probar generación real, calidad, costo y disponibilidad.
 
 ## Capacidades técnicas base
 - **Protecciones:** procesar COMTRADE y SOE mediante utilidades validadas; identificar fase, evento y limitaciones.
