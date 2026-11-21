@@ -52,6 +52,7 @@ flowchart TD
 - [Flujos y pruebas](docs/flujos-y-pruebas.md)
 - [Runbook de respaldo del VPS](docs/backup-vps.md)
 - [DeskRPG: evaluación y piloto](docs/deskrpg.md)
+- [NotebookLM: investigación, presentaciones y audio](docs/notebooklm.md)
 - [Seguridad](docs/seguridad.md)
 - [ADR / decisiones](docs/decisiones.md)
 - [Hoja de ruta](ROADMAP.md)
