@@ -1,6 +1,6 @@
 # DeskRPG — Evaluación e instalación piloto sobre VPS
 
-**Estado:** en evaluación; NO verificado como instalado.  
+**Estado:** piloto instalado; integración con Hermes pendiente de resolver y validar.  
 **Objetivo:** interfaz web visual para la oficina de agentes, especialmente desde el navegador de la laptop corporativa, sin instalar allí herramientas ni burlar restricciones TI.
 
 ## Hipótesis que validaremos
@@ -47,7 +47,7 @@
 
 ## Relación con el catálogo funcional
 
-Los perfiles AG-01…AG-10 son **roles definidos**; empezar con Coordinador, Analista de Mediciones y Documentalista/Revisor. No activar todos a la vez. Mantener históricos Juan y Alma durante la transición. Modelos de OpenRouter por perfil cuando integración confirme soporte; comparar costos reales.
+Los perfiles AG-01…AG-10 son **roles definidos**; empezar con Coordinador, Analista de Mediciones y Documentalista/Revisor. Los diez perfiles se crearon como estructura; no se han validado como agentes operativos. Mantener históricos Juan y Alma durante la transición. Modelos de OpenRouter por perfil cuando integración confirme soporte; comparar costos reales.
 
 ## Pizarra y memoria
 
@@ -70,3 +70,17 @@ Como OpenRouter realiza inferencia, DeskRPG añade principalmente carga de aplic
 ## Decisión pendiente
 
 Aceptar DeskRPG solamente si facilita significativamente el trabajo desde navegador y no degrada la operación actual. Su adopción no condiciona ni el backup ni la futura migración a Mini PC.
+
+
+## Estado observado — 21 de noviembre de 2026
+
+- Piloto DeskRPG 2026.1019.1 desplegado en contenedor con persistencia SQLite; acceso por HTTPS y autenticación. Integración funcional completa **pendiente**.
+- Hermes informa versión 0.23.1; complemento deskrpg 0.32.0, commit 45caa875f2059152188eca515778e8af2a9c08ae, instalado y habilitado en el perfil principal. El diagnóstico del CLI pasa con una advertencia de hook; esto no demuestra que las rutas HTTP funcionen.
+- La API de Hermes responde en loopback; se preparó un relay privado entre contenedores. El test autenticado GET /deskrpg/info devuelve 404. Se confirmó mediante instrumentación temporal que el proceso del gateway ejecuta el registro inicial del plugin, pero no ejecutó la función que conecta las rutas. Causa exacta pendiente; la instrumentación fue retirada del archivo. No atribuir el fallo a claves, versión o enrutamiento sin prueba adicional.
+- Se detectó inicialmente ausencia de PyYAML en el entorno del gateway. Hay un enlace de compatibilidad en el entorno del contenedor hacia la copia persistida de PyYAML; esto funciona al reiniciar, pero **no está garantizado al recrear la imagen**. Diseñar una imagen reproducible con dependencia fijada y probada; no modificar el contenedor productivo sin respaldo.
+- La conexión adicional a la red Docker y el relay comparten el espacio de red del contenedor Hermes y dependen de su dirección privada. No son una configuración de Compose reproducible: reconstruirla y probarla antes de migrar o recrear servicios. Mantener el API sin puerto publicado externamente y proteger las credenciales.
+- Se crearon diez directorios de perfiles y sus instrucciones iniciales; no se han validado configuración de proveedor, modelos, herramientas, aislamiento ni ejecución. Juan y Alma se conservan solo durante la transición hasta verificar migración.
+- Tras reinicios el registro informó conexión de Telegram; también aparecieron intentos de envío rechazados por Telegram porque un destinatario bloqueó el bot. No identifica por sí solo al destinatario ni prueba que toda la integración Telegram falle. Validar con el usuario sin enviar mensajes automáticos.
+- Pendientes: resolver la carga del manejador API por el gestor de plugins y/o alcance de perfil; verificar /deskrpg/info autenticado, conectividad privada, asociación en My Gateways y canal; probar un perfil y Telegram de extremo a extremo; formalizar Compose y rollback; medir recursos con trabajo real; instalar Codex CLI después de completar DeskRPG.
+
+Referencias: https://github.com/dandacompany/deskrpg#hermes-connection y https://github.com/dandacompany/deskrpg-hermes-plugin#requirements-and-installation . Nunca registrar claves, contraseñas ni datos de conversaciones en el repositorio.
