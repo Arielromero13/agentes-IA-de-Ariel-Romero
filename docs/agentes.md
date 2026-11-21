@@ -22,12 +22,12 @@
 **Paralelo:** fuentes, materiales visuales y datos independientes.  
 **Director:** AG-01 elige especialistas, consolida y hace seguimiento cuando el caso exige varios pasos.
 
-El «Investigador» es por ahora una *capacidad transversal* que pueden usar AG-01/02/03/09, no un perfil 11 sin justificación.
+El «Investigador» es por ahora una *capacidad transversal* que pueden usar AG-01/02/03/09, no un perfil 11 sin justificación. Para trabajos con muchas fuentes, esa capacidad podrá apoyarse en NotebookLM: consultar notebooks con citas, pedir un deck inicial o un Audio Overview y entregar a Hermes solo el resumen y la evidencia necesaria. Integración y autenticación pendientes; flujo y límites: [NotebookLM como motor de investigación](notebooklm.md).
 
 ## Regla de modelos
 OpenRouter permite evaluar modelos según herramientas, razonamiento, contexto, calidad y precio; asignación definitiva por perfil después de pruebas reales. No confundir descripción del perfil con cambio efectivo de modelo ni mecanismo de aislamiento.
 
-**Asignación inicial para el equipo visual:** AG-09 (Productor de Presentaciones) y AG-10 (Diseñador Visual) usan un modelo de texto de la familia Claude Sonnet para ideación, dirección, prompts, investigación y revisión. AG-10 además usa la herramienta Hermes image_gen configurada con OpenRouter y el modelo de imagen google/gemini-nano-banana-2.1. Son dos componentes distintos: el modelo de texto decide y redacta; el modelo de imagen genera o edita los recursos. La instalación prepara image_gen en Hermes, pero el modelo de texto y el acceso a herramientas se revisan por empleado en DeskRPG/Hermes. La selección queda como propuesta hasta probar generación real, calidad, costo y disponibilidad.
+**Asignación inicial para el equipo visual:** AG-09 (Productor de Presentaciones) y AG-10 (Diseñador Visual) usan un modelo de texto de la familia Claude Sonnet para ideación, dirección, prompts, investigación y revisión. AG-10 además usa la herramienta Hermes image_gen configurada con OpenRouter y el modelo de imagen google/gemini-nano-banana-2.1. Son dos componentes distintos: el modelo de texto decide y redacta; el modelo de imagen genera o edita los recursos. La instalación prepara image_gen en Hermes, pero el modelo de texto y el acceso a herramientas se revisan por empleado en DeskRPG/Hermes. La selección queda como propuesta hasta probar generación real, calidad, costo y disponibilidad. NotebookLM puede generar un primer PPTX o Audio Overview a partir de fuentes; AG-09/AG-10 y el Revisor Técnico validan contenido, citas y precisión antes de entregar.
 
 ## Capacidades técnicas base
 - **Protecciones:** procesar COMTRADE y SOE mediante utilidades validadas; identificar fase, evento y limitaciones.
