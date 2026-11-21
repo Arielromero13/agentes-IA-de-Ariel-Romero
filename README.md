@@ -1,69 +1,52 @@
 # Ariel Agent OS
 
-**Repositorio:** agentes-IA-de-Ariel-Romero  
-**Propósito:** oficina virtual de ingeniería con agentes especializados y herramientas reproducibles.  
-**Corte del estado documentado:** 21 de noviembre de 2026.  
-**Estado:** piloto operativo reportado sobre VPS Hostinger; instalador para un VPS nuevo documentado y aún no probado.
+Oficina de agentes de ingeniería de Ariel Romero. **Estado al 21-11-2026:** Hermes en VPS, Telegram como canal de trabajo y dashboard oficial de Hermes como interfaz web. DeskRPG fue descartado y retirado por decisión de Ariel.
 
-> **AVISO:** este repositorio se encuentra PÚBLICO al momento de la carga inicial. No guardar secretos, credenciales, backups, expedientes de empresa ni información interna sin autorización. Cambiarlo a privado antes de llevar configuraciones reales.
+## Usarlo ahora desde Android
 
-## Instalación en un VPS nuevo
+Abrir el dashboard existente y seguir la [guía de Hermes en Android](docs/hermes-android.md). El panel corre en el VPS; Chrome es el cliente. El chat oficial de la versión observada es una terminal integrada en la web. Telegram se conserva para encargos y entregables.
 
-El repositorio incluye un instalador de una línea para Debian/Ubuntu. Configura DeskRPG + Hermes + el plugin compatible + HTTPS y prepara generación de imágenes vía OpenRouter. Requiere dominio y clave OpenRouter, y todavía no se ha probado en un VPS limpio. No restaura datos ni perfiles del VPS actual.
+## Estado comprobado
 
-~~~bash
-curl -fsSL https://raw.githubusercontent.com/Arielromero13/agentes-IA-de-Ariel-Romero/main/scripts/install-vps.sh | sudo bash
-~~~
+- Hermes v0.23.1 operativo en el VPS actual.
+- Perfil principal y 12 perfiles especializados conservados.
+- Proveedor OpenRouter: los 12 perfiles utilizaban la misma clave que el principal; credenciales comparadas sin mostrar valores.
+- Dashboard por HTTPS: selector de perfiles, chat, sesiones, modelos, MCP y cron observados.
+- Chat web real del coordinador tras la retirada: respuesta `PANEL_HERMES_OK`.
+- Telegram volvió a conectarse en modo polling después del reinicio.
+- NotebookLM con cuenta dedicada: integración MCP de 55 herramientas conservada. Ariel informó haber recibido un entregable por Telegram; no se asume aceptación de todos los formatos ni ahorros de tokens.
+- DeskRPG retirado: aplicación, relay, complemento, recursos exclusivos y supervisor. Datos archivados de forma privada antes de la retirada.
 
-Guía: [instalación de nuevo VPS](docs/instalacion-nuevo-vps.md).
+Las funciones específicas, el aislamiento entre perfiles y la calidad de los entregables se aceptan mediante pruebas reales, no por aparecer listadas.
 
-## Operación actual (reportada; validar en servidor)
+## Instalación y migración
 
-- Hermes Agent alojado en VPS Hostinger.
-- Telegram como canal operativo.
-- OpenRouter como proveedor de modelos; modelo efectivo por perfil sujeto a verificación.
-- Python/LibreOffice empleados en flujos experimentales de documentos.
-- Agentes históricos «Juan» (protecciones) y «Alma» (puesta a tierra), con pruebas y cambios previos.
-- Casos trabajados: informes de mediciones, COMTRADE/protecciones, calidad de energía Fluke 1748, informes de obras y documentos técnicos.
-- No hay evidencia de que DeskRPG, los diez perfiles funcionales, Codex en servidor o un backup restaurado estén ya desplegados.
+El instalador anterior desplegaba DeskRPG y fue retirado. `scripts/install-vps.sh` ahora termina con un aviso y no instala ni modifica servicios. El Compose anterior no declara servicios activos.
 
-## Arquitectura objetivo
+**Pendiente:** preparar y aceptar un nuevo instalador completo de Hermes nativo y una restauración ensayada en un VPS limpio. No presentar el antiguo comando de una línea como una instalación vigente.
 
-```mermaid
-flowchart TD
- U[Usuario] --> T[Telegram]
- U --> D[DeskRPG web: stack reproducible, aún sin probar]
- T --> H[Hermes Agent]
- D --> H
- H --> P[Perfiles funcionales y herramientas]
- P --> O[OpenRouter]
- P --> L[Python / LibreOffice / almacenamiento]
- C[Codex: operador independiente futuro] --> I[Infraestructura]
- I --> H
- I --> D
-```
+Consultar [instalación y migración](docs/instalacion-nuevo-vps.md) y [respaldo del VPS](docs/backup-vps.md). No retirar el VPS anterior hasta validar el reemplazo.
 
-**VPS actual:** el piloto DeskRPG sigue con la incidencia descrita en [su evaluación](docs/deskrpg.md). El instalador del repositorio prepara un VPS nuevo; no altera ni reemplaza el piloto. La migración requiere backup y restauración verificados.
+## Documentación
 
-## Documentación de trabajo
-
-- [Estado y arquitectura](docs/arquitectura.md)
+- [Hermes en Android](docs/hermes-android.md)
+- [NotebookLM](docs/notebooklm.md)
 - [Catálogo de agentes](docs/agentes.md)
 - [Flujos y pruebas](docs/flujos-y-pruebas.md)
-- [Runbook de respaldo del VPS](docs/backup-vps.md)
-- [DeskRPG: evaluación y piloto](docs/deskrpg.md)
-- [NotebookLM: investigación, presentaciones y audio](docs/notebooklm.md)
 - [Seguridad](docs/seguridad.md)
-- [ADR / decisiones](docs/decisiones.md)
-- [Hoja de ruta](ROADMAP.md)
-- [Plantillas](templates/)
-- [Guía para agentes de código](AGENTS.md)
+- [ADR y decisiones](docs/decisiones.md)
+- [DeskRPG: decisión de retirada e historial](docs/deskrpg.md)
+- [Reglas para agentes de código](AGENTS.md)
 
-## Reglas innegociables
+Los documentos históricos que mencionan DeskRPG, su relay o su instalador no autorizan reinstalarlo. Esta decisión vigente y la guía Android sustituyen esos pasos.
 
-1. Separar instalado, reportado, verificado, experimental y planificado.
-2. No inventar mediciones, fuentes, porcentajes ni normas.
-3. Conservar originales y registrar evidencia de cada prueba.
-4. Scripts versionados y validados antes de reutilizarlos.
-5. Menor privilegio; revisión técnica independiente; aprobación humana final.
-6. No eliminar VPS ni perfiles anteriores antes de validar reemplazos.
+## Reglas del proyecto
+
+1. Distinguir verificado, reportado, propuesto y descartado.
+2. Conservar originales técnicos y evidencia de las pruebas.
+3. No inventar mediciones, citas, costos ni normas.
+4. Mantener la revisión técnica y aprobación humana del entregable final.
+5. Mantener n8n fuera de esta fase hasta documentar una necesidad concreta.
+6. Mantener ChatGPT/Codex independientes de Hermes; no conectarlos por OAuth.
+
+Este repositorio es público. No guardar secretos, archivos de entorno, cookies, backups, expedientes ni conversaciones privadas.
