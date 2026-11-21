@@ -80,6 +80,6 @@ En DeskRPG registra el gateway:
   Token: HERMES_API_KEY guardada en $ENV_FILE
 
 OpenRouter quedó configurado para generación visual con
-google/gemini-3.1-flash-image. El modelo conversacional se asigna por empleado.
+google/gemini-nano-banana-2.1. El modelo conversacional se asigna por empleado.
 Revisa docs/instalacion-nuevo-vps.md y valida el stack antes de usarlo.
 EOF
