@@ -1,92 +1,27 @@
-# Instalación de Ariel Agent OS en un VPS nuevo
+# Instalación y migración a un VPS nuevo
 
-**Estado al 21-11-2026:** el instalador y Compose están incorporados al repositorio; todavía no se han ejecutado en un VPS limpio. La instalación reproducible no equivale a una prueba de aceptación.
+**Estado vigente — 21-11-2026:** DeskRPG fue descartado y retirado del VPS. La arquitectura elegida es Hermes + Telegram + OpenRouter + NotebookLM con cuenta dedicada y dashboard oficial como visor web.
 
-## Instalación con una línea
+## VPS actual
 
-En un VPS Debian o Ubuntu recién creado, entra por SSH como usuario con sudo y ejecuta:
+El dashboard oficial ya está operativo por HTTPS. Consultar la [guía de Android](hermes-android.md). No es necesario desplegar otra interfaz para usarlo desde el teléfono.
 
-~~~bash
-curl -fsSL https://raw.githubusercontent.com/Arielromero13/agentes-IA-de-Ariel-Romero/main/scripts/install-vps.sh | sudo bash
-~~~
+## Instalador anterior retirado
 
-El script solicita el dominio y la clave de OpenRouter de forma interactiva. La clave no se incluye en el comando ni se muestra mientras se escribe. Genera claves de aplicación, crea archivos en /opt/ariel-agent-os, instala Docker si hace falta y levanta los contenedores.
+El antiguo `scripts/install-vps.sh` desplegaba DeskRPG y su plugin. Se sustituyó por un aviso con salida 2 que no instala ni modifica servicios. El antiguo Compose ahora declara cero servicios. Las definiciones anteriores permanecen en el historial de Git, únicamente como referencia histórica.
 
-## Requisitos
+**Todavía no hay un instalador completo de una línea aceptado para la arquitectura nueva.** No presentar el comando anterior como una instalación funcional de Hermes nativo ni reutilizar el stack retirado.
 
-- VPS Debian 12 o Ubuntu 22.04/24.04; se recomienda al menos 2 vCPU y 8 GB RAM para DeskRPG y Hermes.
-- Dominio con registro A que apunte a la IP pública del VPS.
-- Puertos TCP 80 y 443 habilitados en el firewall del VPS y del proveedor, libres para Caddy. Mantén SSH (22) según tu política.
-- Clave API activa en OpenRouter y saldo/límite adecuado para chat e imágenes.
-- Sesión SSH estable con sudo.
+## Trabajo necesario antes de migrar
 
-El instalador no reemplaza una carpeta existente en /opt/ariel-agent-os. No usarlo para actualizar ni restaurar el VPS actual.
+1. Inventariar y respaldar de forma privada los datos persistentes de Hermes: perfiles, modelos, habilidades, memoria, historiales, cron y configuraciones de herramientas.
+2. Registrar el entorno real de la imagen y sus dependencias, incluido LibreOffice; reconstruirlo de forma reproducible y probarlo.
+3. Preparar el nuevo despliegue de Hermes, la autenticación del dashboard, HTTPS y persistencia. La API interna no necesita publicarse para navegar por el dashboard.
+4. Restaurar secretos desde un canal privado; comprobar el proveedor y credenciales por perfil sin imprimirlas.
+5. Reconstruir el entorno Python de NotebookLM en su ruta final y autenticar la cuenta dedicada. La primera autenticación sigue requiriendo intervención humana.
+6. Probar Telegram y respuesta del dashboard, un entregable real con NotebookLM, los perfiles requeridos y un reinicio con persistencia.
+7. Validar restauración y reversión antes de retirar el VPS anterior.
 
-## Componentes
+La integración NotebookLM está descrita en [su guía](notebooklm.md). Ariel informó haber recibido un entregable por Telegram; eso se registra como prueba reportada por el usuario, sin asumir aceptación de todos los flujos o formatos.
 
-- DeskRPG 2026.1019.1, SQLite y datos en volumen persistente.
-- Hermes Agent v0.23.3; API solo en la red privada de Docker. Dashboard, si se activa, ligado a loopback.
-- Plugin DeskRPG del commit que DeskRPG fija para esa versión; se instala y habilita antes de iniciar el gateway.
-- Caddy como proxy HTTPS. Solo la oficina se publica en 80/443.
-- Hermes image_gen configurado con proveedor OpenRouter y modelo inicial google/gemini-nano-banana-2.1. Su disponibilidad y precio pueden cambiar.
-- Secretos en deploy/vps/.env, con permisos 600. El archivo y volúmenes de datos están excluidos de Git.
-
-La primera cuenta de DeskRPG se convierte en administradora. En My Gateways registra Hermes en http://hermes:8642 usando HERMES_API_KEY del archivo local .env. Después agrega los perfiles Hermes y asocia el gateway al canal. Estos pasos requieren usar la interfaz; el despliegue del servidor se ejecuta con una línea.
-
-## Modelos de texto e imágenes
-
-La conversación y el razonamiento de cada empleado son independientes del modelo que produce imágenes:
-
-- DeskRPG permite escoger modelo, proveedor y configuración por empleado. Asigna Claude Sonnet u otro modelo de texto al diseñador para ideación, dirección de arte, prompts y revisión.
-- Hermes utiliza OpenRouter para image_gen y el modelo de imagen indicado arriba. El costo de imágenes se factura según el modelo/proveedor, además del costo de texto que genere o refine el prompt.
-- Configurar un modelo visual no hace que cada agente genere imágenes por sí solo. El perfil debe tener acceso a image_gen; confirma en Hermes que la herramienta esté habilitada para ese perfil.
-- El instalador no altera el modelo conversacional de perfiles existentes. Se asigna por empleado después de registrar perfiles.
-- El catálogo de modelos visuales cambia; revisa disponibilidad y precios antes de producción.
-
-## Aceptación posterior
-
-No consideres la oficina aceptada solo porque cargue la URL. Verifica manualmente:
-
-1. DeskRPG carga en HTTPS y permite crear la cuenta administradora.
-2. My Gateways conecta con http://hermes:8642 y la clave propietaria del listener.
-3. Aparecen los perfiles Hermes; asocia un perfil a un empleado y canal.
-4. Un mensaje de prueba responde en DeskRPG; si Telegram se configura por separado, confirma también que sigue operativo.
-5. Kanban y cron funcionan con el plugin activo. Prueba una tarea pequeña y una ejecución programada.
-6. El perfil visual genera una imagen real mediante image_gen; revisa el cargo en OpenRouter.
-7. Un reinicio conserva cuentas, perfiles y datos.
-
-Registra fecha, versiones, evidencia con secretos ocultos, uso de RAM/CPU y resultados. No copies claves ni archivos del VPS al repositorio.
-
-## Operación y actualización
-
-~~~bash
-cd /opt/ariel-agent-os
-sudo docker compose --env-file deploy/vps/.env -f deploy/vps/docker-compose.yml ps
-sudo docker compose --env-file deploy/vps/.env -f deploy/vps/docker-compose.yml logs -f hermes deskrpg caddy
-sudo docker compose --env-file deploy/vps/.env -f deploy/vps/docker-compose.yml pull
-sudo docker compose --env-file deploy/vps/.env -f deploy/vps/docker-compose.yml up -d
-~~~
-
-Antes de actualizar, respalda DeskRPG y Hermes; no uses docker compose down -v. Las etiquetas están fijadas para facilitar una instalación repetible. Para actualizar, cambia DESKRPG_IMAGE y HERMES_IMAGE en el .env local conforme a sus notas de versión y compatibilidad, recrea servicios y repite la aceptación. El pin del plugin se obtiene de la imagen DeskRPG seleccionada.
-
-Para restaurar, detén servicios sin borrar volúmenes, restaura desde un respaldo ensayado y valida antes de reabrir tráfico. Consulta la guía de [respaldo del VPS](backup-vps.md).
-
-## NotebookLM (integración opcional)
-
-NotebookLM no forma parte todavía de la instalación de una línea. La investigación de integración encontró que el MCP oficial está en Public Preview y no ofrece actualmente Q&A/Studio; el conector comunitario con esas capacidades requiere autenticación de Google y conserva cookies de sesión fuera del repositorio. No se ha desplegado ni aceptado. Sigue el procedimiento, límites y criterios de seguridad en [docs/notebooklm.md](notebooklm.md).
-
-## Límites
-
-- No migra datos, perfiles, memoria, credenciales ni historial del VPS actual. Eso requiere respaldo cifrado y una restauración probada.
-- No expone Hermes API, dashboard ni base de datos a Internet.
-- No configura Telegram ni restaura empleados/modelos.
-- No se ha ejecutado en un VPS limpio al publicar esta versión.
-- Revisa las versiones actuales antes de producción: DeskRPG y Hermes evolucionan por separado.
-
-## Referencias técnicas
-
-- [DeskRPG: Docker y Hermes](https://github.com/dandacompany/deskrpg#quick-start)
-- [DeskRPG: conexión y plugin Hermes](https://github.com/dandacompany/deskrpg#hermes-connection)
-- [Hermes: despliegue Docker](https://hermes-agent.nousresearch.com/deployment/docker/)
-- [Hermes: generación de imágenes](https://hermes-agent.nousresearch.com/features/image-generation/)
-- [OpenRouter: catálogo de modelos de imagen](https://openrouter.ai/google/gemini-nano-banana-2.1)
+Consultar [respaldo del VPS](backup-vps.md). No publicar archivos de entorno, cookies, tokens, backups ni expedientes en el repositorio.
